@@ -1,24 +1,23 @@
 class Solution {
   public:
     
-    void dfs(int node, vector<int> adj[], vector<int>& ans, vector<int>&vis){
-        vis[node]=1;
-        ans.push_back(node);
-        for(auto it: adj[node]){
-            if(vis[it]==-1){
-                dfs(it,adj,ans,vis);
-            }
+  void dfs(int i,vector<int> adj[],vector<int>& ans,vector<bool>& visited)
+    {
+        visited[i]=true;
+        ans.push_back(i);
+        
+        for(int in : adj[i])
+        {
+            if(visited[in]==false)
+                dfs(in,adj,ans,visited);
         }
     }
-    
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         vector<int> ans;
-        vector<int> vis(V,-1);
-        for(auto it: adj){
-            if(vis[it]==-1){
-                dfs(it,adj,ans,vis);
-            }
-        }
+        vector<bool> visited(V,false);
+        
+        dfs(0,adj,ans,visited);
+        
         return ans;
     }
 };
