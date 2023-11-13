@@ -1,50 +1,23 @@
-#include<iostream>
-using namespace std;
-
-int
-binarySearch (int n, int arr[], int key)
-{
-  int low = 0;
-  int high = n;
-  while (low <= high)
+int binarysearch(int arr[], int n, int k)
     {
-      int mid = (low + high)/2;
-      if (arr[mid] == key)
-	{
-	  return mid;
-	}
-      else if (key < mid)
-	{
-	  high = mid - 1;
-
-	}
-      else
-	{
-	  high = mid + 1;
-	}
-
+        int high , low , mid;
+        low  = 0;
+        high = n - 1;
+        while(low <= high)
+        {
+            mid = (low + high) / 2;
+            if(arr[mid] == k)
+            {
+                return mid;
+            }
+            else if(arr[mid] < k)
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+        return -1;
     }
-return 0;
-
-}
-
-
-int
-main ()
-{
-  int n;
-  cout << "Enter the size of n:";
-  cin >> n;
-  int arr[n];
-  cout << "Enter the elements :";
-  for (int i = 0; i < n; i++)
-    {
-      cin >> arr[i];
-    }
-  int key;
-  cout << "Enter the value of key";
-  cin >> key;
-  cout << binarySearch (n, arr, key);
-  return 0;
-}
-
